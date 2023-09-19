@@ -6,15 +6,18 @@ import csv
 #text file path/open (learned from online code)
 
 filepath = os.path.join("Analysis","text.txt")
+#will use "filename" to print results to text file in Analysis folder
 filename = open(filepath,"w")
 
 #set file path
 csvpath = os.path.join("Resources","budget_data.csv")
 
 
-#print financial analysis and what we will be seraching for
+#print financial analysis to terminal and text file
 print("Financial Analysis")
+print("Financial Analysis", file = filename)
 print("-----------------------------")
+print("-----------------------------", file = filename)
 
 #Predefine variables that will be used.
 month = 0
