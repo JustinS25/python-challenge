@@ -2,16 +2,13 @@
 import os
 import csv
 
-
 #text file path/open (learned from online code)
-
 filepath = os.path.join("Analysis","text.txt")
 #will use "filename" to print results to text file in Analysis folder
 filename = open(filepath,"w")
 
 #set file path
 csvpath = os.path.join("Resources","budget_data.csv")
-
 
 #print financial analysis to terminal and text file
 print("Financial Analysis")
@@ -29,28 +26,26 @@ greatest_dec = 0
 greatest_month_inc = 0
 greatest_month_dec = 0
 x = 0
+counter_inc = 0
+counter_dec = 0
 
 #Open CSV with UTF-8 encoding (Following code was provided in class)
 with open(csvpath, encoding = 'UTF-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter= ",")
 
+    #stores the header/moves row to following row
+    header = next(csvreader)
+
+    #loop through each row of csvfile
     for row in csvreader:
         #(PART 1) Get month total
         #counting the rows in the csv files. Each row is a new month
-        #we make sure row doesn't add to counter when it's the first row because it doesn't count as a month
-        #we make sure there are no repeats by storing the previous row[0] and making sure it doesn't equal current row[0]
-        if row[0] != "Date":
-
-            #since each row equals a month, we want to get the total rows to determine the months
-            month = month + 1
-            current_row = row[0]
+        month += 1
 
         #(PART 2) Get Total Profit
         #don't want to add first row which is a string
-        if row[1] != "Profit/Losses":
-
-            #loop through data and add totals at each iteration
-            total = total + int(row[1])
+        #loop through data and add totals at each iteration
+        total = total + int(row[1])
 
     #Print total months
     print("Total Months: " + str(month))
@@ -60,15 +55,17 @@ with open(csvpath, encoding = 'UTF-8') as csvfile:
     print("Total: $" + str(total))
     print("Total: $" + str(total), file = filename)
 
-
+#re-open file to reset for loop
 with open(csvpath, encoding = 'UTF-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter= ",")
-    #removes the header
+
+    #stores the header/moves row to following row
     header = next(csvreader)
     first_row = next(csvreader)
     #first data in profits/losses
     previous_row = int(first_row[1])
-    #loops through each row of the csv file
+
+    #loop through each row of the csv file
     for row in csvreader:
         
         #(PART 3) Average Change
@@ -100,41 +97,43 @@ avg_change = round(avg_change,2)
 print("Average Change: $" + str(avg_change))
 print("Average Change: $" + str(avg_change), file = filename)
 
-
+#re-open file to reset for loop
 with open(csvpath, encoding = 'UTF-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter= ",")
-    #removes the header
+
+    #stores the header/moves row to following row
     header = next(csvreader)
     first_row = next(csvreader)
     #first data in profits/losses
     previous_row = int(first_row[1])
-    #loops through each row of the csv file
-    counter_inc = 0
 
+    #loops through each row of the csv file to get greatest increase
     for row in csvreader:
         if counter_inc == greatest_month_inc:
-            print("Greatest Increase in Profits: " + row[0] + " $" + str(greatest_inc))
-            print("Greatest Increase in Profits: " + row[0] + " $" + str(greatest_inc), file = filename)
+            print("Greatest Increase in Profits: " + row[0] + " ($" + str(greatest_inc) + ")")
+            print("Greatest Increase in Profits: " + row[0] + " ($" + str(greatest_inc) + ")", file = filename)
             counter_inc += 1
         else:
             counter_inc += 1
 
+#re-open file to reset for loop
 with open(csvpath, encoding = 'UTF-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter= ",")
-    #removes the header
+    
+    #stores the header/moves row to following row
     header = next(csvreader)
     first_row = next(csvreader)
     #first data in profits/losses
     previous_row = int(first_row[1])
-    #loops through each row of the csv file
-    counter_dec = 0
+    
+    #loops through each row of the csv file to get greatest decrease
     for row in csvreader:
         if counter_dec == greatest_month_dec:
-            print("Greatest Decrease in Profits: " + row[0] + " $" + str(greatest_dec))
-            print("Greatest Decrease in Profits: " + row[0] + " $" + str(greatest_dec), file = filename)
+            print("Greatest Decrease in Profits: " + row[0] + " ($" + str(greatest_dec) + ")")
+            print("Greatest Decrease in Profits: " + row[0] + " ($" + str(greatest_dec) + ")", file = filename)
             counter_dec += 1
         else:
             counter_dec += 1
 
-
+#close text file at end of code
 filename.close()

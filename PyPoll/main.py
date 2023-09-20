@@ -1,8 +1,8 @@
+#import modules
 import os
 import csv
 
 #text file path/open (learned from online code)
-
 filepath = os.path.join("Analysis","text.txt")
 #will use "filename" to print results to text file in Analysis folder
 filename = open(filepath,"w")
@@ -22,6 +22,7 @@ charles_counter = 0
 diana_counter = 0
 raymon_counter = 0
 names = []
+
 #Open CSV with UTF-8 encoding (Following code was provided in class)
 with open(csvpath, encoding = 'UTF-8') as csvfile:
     csvreader = csv.reader(csvfile, delimiter = ',')
@@ -98,4 +99,5 @@ if raymon_counter > charles_counter and raymon_counter > diana_counter:
     print("-----------------------------")
     print("-----------------------------", file = filename)
 
+#close text file at end of code
 filename.close()
