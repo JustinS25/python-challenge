@@ -1,6 +1,19 @@
 # python-challenge
 
-##Citations
+## Citations
 
-Open seperate text file into analysis folder:
+### PyBank
+
+- Open/close seperate text file into analysis folder:
 (https://www.w3schools.com/python/python_file_open.asp)
+
+-- Building off the above, I used Visual Studio code to learn what parameters I can add to print() function. Added the "file" parameter to print results to text file
+
+- Ask BCS helped with Part 3 of PyBank. Helped use next() function as well as creating/storing the net_change list.
+
+### PyPoll
+
+- Open/close seperate text file into analysis folder:
+(https://www.w3schools.com/python/python_file_open.asp)
+
+-- Building off the above, I used Visual Studio code to learn what parameters I can add to print() function. Added the "file" parameter to print results to text file
